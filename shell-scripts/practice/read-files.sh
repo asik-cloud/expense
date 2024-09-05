@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "enter Username:"
-read -s USERNAME > user.txt
-
+read -s USERNAME
+echo "$USERNAME"
 echo "enter password:"
-read -s PASSWORD >> user.txt
+read -s PASSWORD
+echo "$PASSWORD"
