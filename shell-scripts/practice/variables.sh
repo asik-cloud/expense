@@ -1,8 +1,7 @@
 #!/bin/bash
-
-echo "Chitti: Hi Vennala!"
-echo "Vennela: Hello Chitii. How are you?"
-echo "Chitti: I am doing good Vennela"
-echo "Vennela: Activate command mode"
-
-
+person1=$1
+person2=$2
+echo "$person1: Hi $person2!"
+echo "$person2: Hello $person1. How are you?"
+echo "$person1: I am doing good $person2"
+echo "$person2: Activate command mode"
