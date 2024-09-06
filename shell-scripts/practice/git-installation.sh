@@ -1,7 +1,7 @@
 #!/bin/bash
 USER=$(id -u)
-RED="\e[31m"
-GREEN="\e[32m"
+R="\e[31m"
+G="\e[32m"
 Y="\e[33m"
 
 if [ $USER -ne 0 ]
@@ -14,9 +14,9 @@ VALIDATE(){
 
     if [ $1 -ne 0 ]
     then 
-        echo -e "$2 $RED failed"
+        echo -e "$2 $R failed"
     else   
-        echo -e "$2 $GREEN Success"
+        echo -e "$2 $G Success"
     fi
 }
 
