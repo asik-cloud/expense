@@ -3,7 +3,9 @@ USER=$(id -u)
 
 if [ $USER -ne 0 ]
 then
-    echo "Switch to root"
-else
+    echo "Switching to root"
+    sudo su -
     dnf install git -y
+else 
+    echo "Bye bye"
 fi
