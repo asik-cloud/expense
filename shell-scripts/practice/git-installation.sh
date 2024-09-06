@@ -1,5 +1,8 @@
 #!/bin/bash
 USER=$(id -u)
+RED="e\[031m"
+GREEN="e\[032m"
+Y="e\[033m"
 
 if [ $USER -ne 0 ]
 then
@@ -11,9 +14,9 @@ VALIDATE(){
 
     if [ $1 -ne 0 ]
     then 
-        echo "$2 failed"
+        echo -e "$2 $RED failed"
     else   
-        echo "$2 Success"
+        echo -e "$2 $GREEN Success"
     fi
 }
 
@@ -24,7 +27,7 @@ then
     dnf install git -y
     VALIDATE $? "Installing git"
 else
-    echo "git already installed"
+    echo "$Y git already installed"
 fi
 
 dnf list installed mysql
@@ -33,7 +36,7 @@ then
     dnf install mysql -y
     VALIDATE $? "Installing mysql"
 else
-    echo "mysql already installed"
+    echo " $Y mysql already installed"
 fi
 
 
