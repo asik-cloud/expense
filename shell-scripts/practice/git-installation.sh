@@ -8,16 +8,30 @@ then
 fi   
 
 
-dnf list installed git
+dnf list installed $1
 if [ $? -ne 0 ]
 then
-    dnf install git -y
+    dnf install $1 -y
     if [ $? -ne 0 ]
     then 
-        echo "git not installed"
+        echo "$1 not installed"
     else   
-        echo "git installed"
+        echo "$1 installed"
     fi
 else
-    echo "git already installed"
+    echo "$1 already installed"
+fi
+
+dnf list installed $2
+if [ $? -ne 0 ]
+then
+    dnf install $2 -y
+    if [ $? -ne 0 ]
+    then 
+        echo "$2 not installed"
+    else   
+        echo "$2 installed"
+    fi
+else
+    echo "$2 already installed"
 fi
