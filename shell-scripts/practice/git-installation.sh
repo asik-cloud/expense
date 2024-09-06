@@ -7,31 +7,33 @@ then
     exit 1
 fi   
 
+VALIDATE(){
 
-dnf list installed $1
-if [ $? -ne 0 ]
-then
-    dnf install $1 -y
-    if [ $? -ne 0 ]
-    then 
-        echo "$1 not installed"
-    else   
-        echo "$1 installed"
-    fi
-else
-    echo "$1 already installed"
-fi
-
-dnf list installed $2
-if [ $? -ne 0 ]
-then
-    dnf install $2 -y
-    if [ $? -ne 0 ]
+    if [ $1 -ne 0 ]
     then 
         echo "$2 not installed"
     else   
         echo "$2 installed"
     fi
+}
+
+
+dnf list installed git
+if [ $? -ne 0 ]
+then
+    dnf install git -y
+    VALIDATE $? "Installing git"
 else
-    echo "$2 already installed"
+    echo "git already installed"
 fi
+
+dnf list installed mysql
+if [ $? -ne 0 ]
+then
+    dnf install mysql -y
+    VALIDATE $? "Installing mysql"
+else
+    echo "mysql already installed"
+fi
+
+
