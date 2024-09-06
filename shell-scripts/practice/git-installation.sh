@@ -1,8 +1,8 @@
 #!/bin/bash
 USER=$(id -u)
-RED="e\[031m"
-GREEN="e\[032m"
-Y="e\[033m"
+RED="\e[31m"
+GREEN="\e[32m"
+Y="\e[33m"
 
 if [ $USER -ne 0 ]
 then
