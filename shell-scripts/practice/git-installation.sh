@@ -11,9 +11,9 @@ VALIDATE(){
 
     if [ $1 -ne 0 ]
     then 
-        echo "$2 not installed"
+        echo "$2 failed"
     else   
-        echo "$2 installed"
+        echo "$2 Success"
     fi
 }
 
