@@ -11,13 +11,12 @@ ROOT_CHECK(){
 }
 
 VALIDATE(){
-
-    dnf list installed $package 
+ 
     if [ $? -ne 0 ]
     then
         echo "installing $package"
     else
-        echo "$package Either already installed or installation failed"
+        echo "$package installation failed"
     fi
 }
 
@@ -25,10 +24,14 @@ ROOT_CHECK
 
 for package in $@
 do
-    VALIDATE 
+    dnf list installed $package
     if [ $? -ne 0 ]
     then
         echo "installing $package"
         dnf install $package -y
+        VALIDATE
+    else 
+        echo "already installed"
     fi
+    
 done
