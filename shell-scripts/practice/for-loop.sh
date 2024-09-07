@@ -12,7 +12,7 @@ ROOT_CHECK(){
 }
 
 USAGE(){
-    if [ $# -eq 0 ]
+    if [ $@ -eq 0 ]
     then 
         echo " Enter package(s) name(s) to install. Eg: git mysql postfix nginx ... "
         exit 1
