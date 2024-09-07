@@ -10,12 +10,25 @@ ROOT_CHECK(){
     fi
 }
 
+VALIDATE(){
+
+    dnf list installed $package 
+    if [ $? -ne 0 ]
+    then
+        echo "installing $package"
+    else
+        echo "$package Either already installed or installation failed"
+    fi
+}
+
 ROOT_CHECK
-dnf list installed git 
-if [ $? -ne 0 ]
-then
-    echo "installing git"
-    dnf install git -y
-else
-    echo "Git is already installed"
-fi
+
+for package in $@
+do
+    VALIDATE 
+    if [ $? -ne 0 ]
+    then
+        echo "installing $package"
+        dnf install $package -y
+    fi
+done
