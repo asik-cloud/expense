@@ -3,7 +3,8 @@
 USER=$(id -u)
 
 ROOT_CHECK(){
-    if ( $USER -ne 0)
+    
+    if ( $USER -ne 0 )
     then    
         echo "Switch to root user"
         exit 1
