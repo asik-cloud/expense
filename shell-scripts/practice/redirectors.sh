@@ -10,6 +10,7 @@ ROOT_CHECK(){
     fi
 }
 
+ROOT_CHECK
 dnf list installed git 
 if [ $? -ne 0 ]
 then
