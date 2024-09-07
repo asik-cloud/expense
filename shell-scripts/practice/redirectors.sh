@@ -14,24 +14,37 @@ VALIDATE(){
  
     if [ $1 -ne 0 ]
     then
-        echo "installing $2"
+        echo "$2 failed"
     else
-        echo "$2 installation failed"
+        echo "$2 Success"
     fi
 }
 
 ROOT_CHECK
 
-for package in $@
+# for package in $@
+# do
+#     dnf list installed $package
+#     if [ $? -ne 0 ]
+#     then
+#         echo "installing $package"
+#         dnf install $package -y
+#         VALIDATE $? "$package"
+#     else 
+#         echo "already installed"
+#     fi
+    
+# done
+
+for package in $@ # $@ refers to all arguments passed to it
 do
-    dnf list installed $package
+    dnf list installed $package 
     if [ $? -ne 0 ]
     then
-        echo "installing $package"
-        dnf install $package -y
-        VALIDATE $? "$package"
-    else 
-        echo "already installed"
+        echo "$package is not installed, going to install it.." 
+        dnf install $package -y 
+        VALIDATE $? "Installing $package"
+    else
+        echo "$package is already installed..nothing to do" 
     fi
-    
 done
