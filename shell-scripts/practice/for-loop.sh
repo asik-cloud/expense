@@ -1,6 +1,11 @@
 #!/bin/bash
 
 USER=$(id -u)
+LOG_FOLDER="/var/log/shell-scripts"
+SCRIT_NAME=$(echo $0 | cut -d "." -f1)
+mkdir -p $LOG_FOLDER
+TIMESTAMP=$(date +%y-%m-%d-%H:%M:%S)
+LOG_FILE="$LOG_FOLDER/$SCRIT_NAME-$TIMESTAMP.log"
 
 ROOT_CHECK(){
 
@@ -15,9 +20,9 @@ VALIDATE(){
 
     if [ $1 -ne 0 ]
     then
-        echo " $2...failed "
+        echo " $2...failed " | tee -a $LOG_FILE
     else   
-        echo " $2...success "
+        echo " $2...success " | tee -a $LOG_FILE
     fi
 }
 
@@ -32,11 +37,11 @@ ROOT_CHECK
 for package in $@
 do
     
-    dnf list installed $package
+    dnf list installed $package | tee -a $LOG_FILE
     if [ $? -ne 0 ]
     then
-        echo "installing git"
-        dnf install $package -y
+        echo "installing $package"
+        dnf install $package -y &>>$LOG_FILE
         VALIDATE $? " $package Installation "
     else
         echo "$package already installed"
