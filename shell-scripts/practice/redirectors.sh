@@ -24,7 +24,7 @@ ROOT_CHECK
 
 for package in $@
 do
-    dnf list installed $package
+    dnf list installed $2
     if [ $? -ne 0 ]
     then
         echo "installing $package"
