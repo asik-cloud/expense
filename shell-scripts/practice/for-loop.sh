@@ -16,6 +16,7 @@ USAGE(){
     then 
         echo " Enter package(s) name(s) to install. Eg: git mysql postfix nginx ... "
         exit 1
+    fi
 }
 
 ROOT_CHECK
