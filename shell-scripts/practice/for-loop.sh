@@ -11,10 +11,18 @@ ROOT_CHECK(){
     fi
 }
 
+USAGE(){
+    if [ $# -eq 0 ]
+    then 
+        echo " Enter package(s) name(s) to install. Eg: git mysql postfix nginx ... "
+        exit 1
+}
+
 ROOT_CHECK
 
 for package in $@
 do
+    USAGE
     dnf list installed $package
     if [ $? -ne 0 ]
     then
