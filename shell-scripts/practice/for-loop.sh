@@ -13,12 +13,14 @@ ROOT_CHECK(){
 
 ROOT_CHECK
 
-
-dnf list installed git
-if [ $? -ne 0 ]
-then
-    echo "installing git"
-    dnf install git -y
-else
-    echo "Git already installed"
-fi
+for package in $@
+do
+    dnf list installed $package
+    if [ $? -ne 0 ]
+    then
+        echo "installing git"
+        dnf install $package -y
+    else
+        echo "$package already installed"
+    fi
+done
