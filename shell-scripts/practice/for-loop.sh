@@ -11,6 +11,15 @@ ROOT_CHECK(){
     fi
 }
 
+VALIDATE(){
+
+    if [ $1 -ne 0 ]
+    then
+        echo " $2...failed "
+    else   
+        echo " $2...success "
+    fi
+}
 
 if [ $# -eq 0 ]
 then 
@@ -28,6 +37,7 @@ do
     then
         echo "installing git"
         dnf install $package -y
+        VALIDATE $? " $package Installation "
     else
         echo "$package already installed"
     fi
