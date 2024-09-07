@@ -12,11 +12,11 @@ ROOT_CHECK(){
 
 VALIDATE(){
  
-    if [ $? -ne 0 ]
+    if [ $1 -ne 0 ]
     then
-        echo "installing $package"
+        echo "installing $2"
     else
-        echo "$package installation failed"
+        echo "$2 installation failed"
     fi
 }
 
@@ -29,7 +29,7 @@ do
     then
         echo "installing $package"
         dnf install $package -y
-        VALIDATE
+        VALIDATE $?
     else 
         echo "already installed"
     fi
