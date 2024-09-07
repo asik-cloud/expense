@@ -24,12 +24,12 @@ ROOT_CHECK
 
 for package in $@
 do
-    dnf list installed $2
+    dnf list installed $package
     if [ $? -ne 0 ]
     then
         echo "installing $package"
         dnf install $package -y
-        VALIDATE $?
+        VALIDATE $? $package
     else 
         echo "already installed"
     fi
