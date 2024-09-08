@@ -8,6 +8,7 @@ mkdir -p $LOG_FOLDER
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
+N="\e[om"
 
 ROOT_CHECK(){
 
@@ -39,7 +40,6 @@ else
 fi
 
 systemctl enable mysqld &>>$LOG_FILE
-
 VALIDATE $? "Enabling mysql server"
 
 systemctl start mysqld &>>$LOG_FILE
