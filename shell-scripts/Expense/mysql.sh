@@ -21,9 +21,10 @@ VALIDATE(){
 
     if [ $1 -ne 0 ]
     then
-        echo -e " $2...$G Success $N "
+        echo -e " $2...$G failed $N "
+
     else    
-        echo -e " $2...$R failed $N "
+        echo -e " $2...$R success $N "
     fi
 }
 ROOT_CHECK
@@ -38,13 +39,18 @@ else
 fi
 
 systemctl enable mysqld &>>$LOG_FILE
+
 VALIDATE $? "Enabling mysql server"
 
 systemctl start mysqld &>>$LOG_FILE
 VALIDATE $? "Starting mysql server"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 | tee -a $LOG_FILE
-VALIDATE $? "Setting up root password for mysql server"
-
-mysql -h mysql.mohammedasik.shop -u root -pExpenseApp@1 ; show databases;
-VALIDATE $? "checking databases"
+mysql -h mysql.mohammedasik.shop -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
+if [ $? -ne 0 ]
+then
+    echo "setting up password now"
+    mysql_secure_installation --set-root-pass ExpenseApp@1 | tee -a $LOG_FILE
+    VALIDATE $? "Password set"
+else
+    echo "Password already setup..Skipping"
+fi
