@@ -8,6 +8,7 @@ sudo mkdir -p $LOG_FOLDER
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
+N="\e[0m"
 
 ROOT_CHECK(){
 
@@ -47,7 +48,7 @@ dnf list installed nodejs &>>$LOG_FILE
         echo "NodeJs already Installed"
     fi
 
-id expense
+id expense &>>$LOG_FILE
     if [ $? -ne 0 ]
     then    
         echo "Adding User expense"
@@ -60,7 +61,9 @@ id expense
  curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
  VALIDATE $? "Downloading backend data"
 
+ mkdir -p /app
  cd /app
+ rm -rf /app/*
  unzip /tmp/backend.zip &>>$LOG_FILE
  VALIDATE $? "Extracting the data"
 
