@@ -4,7 +4,7 @@ LOG_FOLDER="/var/log/expense"
 SCRIT_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_FOLDER/$SCRIT_NAME-$TIMESTAMP.log"
- sudo mkdir -p $LOG_FOLDER
+mkdir -p $LOG_FOLDER
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -26,7 +26,7 @@ VALIDATE(){
         echo -e " $2...$R failed $N "
     fi
 }
-
+ROOT_CHECK
 dnf list installed mysql-server | tee -a $LOG_FILE
 if [ $? -ne 0 ]
 then 
