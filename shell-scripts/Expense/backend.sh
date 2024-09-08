@@ -89,7 +89,7 @@ else
     echo " Already installed ...skipping"
 fi
 
-mysql -h 172.31.29.81 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h 18.215.176.75 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Loading Schema"
 
 systemctl restart backend
