@@ -1,6 +1,6 @@
 #!/bin/bash
 USER=$(id -u)
-LOG_FOLDER="/var/log/Shellscripts"
+LOG_FOLDER="/var/log/expense"
 SCRIT_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_FOLDER/$SCRIT_NAME-$TIMESTAMP.log"
