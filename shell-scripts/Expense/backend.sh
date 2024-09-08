@@ -3,7 +3,7 @@ USER=$(id -u)
 LOG_FOLDER="/var/log/expense"
 SCRIT_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%y-%m-%d_%h%M%s)
-LOG_FILE=$LOG_FOLDER/$SCRIT_NAME.log
+LOG_FILE=$LOG_FOLDER/$SCRIT_NAME-$TIMESTAMP.log
 sudo mkdir -p $LOG_FOLDER
 R="\e[31m"
 G="\e[32m"
@@ -89,7 +89,7 @@ else
     echo " Already installed ...skipping"
 fi
 
-mysql -h 172.31.29.81 -uroot -pExpenseApp@1 < /app/schema/backend.sql
+mysql -h 172.31.29.81 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Loading Schema"
 
 systemctl restart backend
