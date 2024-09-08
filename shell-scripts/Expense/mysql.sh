@@ -27,3 +27,24 @@ VALIDATE(){
     fi
 }
 
+dnf list installed mysql-server | tee -a $LOG_FILE
+if [ $? -ne 0 ]
+then 
+    echo "Installing mysql server"
+    dnf install mysql-server -y &>>$LOG_FILE
+    VALIDATE $? "Installing mysql-server"
+else
+    echo "mysql server is already installed"
+fi
+
+systemctl enable mysqld &>>$LOG_FILE
+VALIDATE $? "Enabling mysql server"
+
+systemctl start mysqld &>>$LOG_FILE
+VALIDATE $? "Starting mysql server"
+
+mysql_secure_installation --set-root-pass ExpenseApp@1 | tee -a $LOG_FILE
+VALIDATE $? "Setting up root password for mysql server"
+
+mysql -h mysql.mohammedasik.shop -u root -pExpenseApp@1 ; show databases;
+VALIDATE $? "checking databases"
