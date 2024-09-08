@@ -1,67 +1,60 @@
 #!/bin/bash
-USER=$(id -u)
-LOG_FOLDER="/var/log/expense"
-SCRIT_NAME=$(echo $0 | cut -d "." -f1)
-TIMESTAMP=$(date +%y-%m-%d_%h%M%s)
-LOG_FILE=$LOG_FOLDER/$SCRIT_NAME-$TIMESTAMP.log
-sudo mkdir -p $LOG_FOLDER
+
+LOGS_FOLDER="/var/log/expense"
+SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
+LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
+mkdir -p $LOGS_FOLDER
+
+USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"
-Y="\e[33m"
 N="\e[0m"
+Y="\e[33m"
 
-ROOT_CHECK(){
-
-    if [ $USER -ne 0 ]
-    then  
-        echo "swich to root"
+CHECK_ROOT(){
+    if [ $USERID -ne 0 ]
+    then
+        echo -e "$R Please run this script with root priveleges $N" | tee -a $LOG_FILE
         exit 1
     fi
 }
 
 VALIDATE(){
-
     if [ $1 -ne 0 ]
     then
-        echo -e "$2...$R failed $N" | tee -a $LOG_FILE
-    else    
-        echo -e "$2...$G success $N" | tee -a $LOG_FILE
+        echo -e "$2 is...$R FAILED $N"  | tee -a $LOG_FILE
+        exit 1
+    else
+        echo -e "$2 is... $G SUCCESS $N" | tee -a $LOG_FILE
     fi
-
 }
 
-ROOT_CHECK
+echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
-dnf list installed nginx &>>$LOG_FILE
-    if [ $? -ne 0 ]
-    then    
-        echo "Installing nginx"
-        dnf install nginx -y &>>$LOG_FILE
-        VALIDATE $? "Installing nginx"
-    else
-        echo "nginx already Installed"
-    fi
-systemctl daemon-reload 
+CHECK_ROOT
 
-systemctl enable nginx
-VALIDATE $? "Enabling"
+dnf install nginx -y &>>$LOG_FILE
+VALIDATE $? "Installing Nginx"
 
-systemctl start nginx
-VALIDATE $? "Starting/restarting"
+systemctl enable nginx &>>$LOG_FILE
+VALIDATE $? "Enable Nginx"
 
-rm -rf /usr/share/nginx/html/*
+systemctl start nginx &>>$LOG_FILE
+VALIDATE $? "Start Nginx"
+
+rm -rf /usr/share/nginx/html/* &>>$LOG_FILE
+VALIDATE $? "Removing default website"
 
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOG_FILE
+VALIDATE $? "Downloding frontend code"
 
 cd /usr/share/nginx/html
+unzip /tmp/frontend.zip &>>$LOG_FILE
+VALIDATE $? "Extract frontend code"
 
- unzip /tmp/frontend.zip &>>$LOG_FILE
- VALIDATE $? "Extracting the data"
+cp practice-81s/shell-scripts/Expense/expense.conf /etc/nginx/default.d/expense.conf
+VALIDATE $? "Copied expense conf"
 
-cp /home/ec2-user/practice-81s/shell-scripts/Expense/expense.conf /etc/nginx/default.d/expense.conf
-
-
-systemctl restart nginx
-VALIDATE $? "Restarting nginx"
-
-
+systemctl restart nginx &>>$LOG_FILE
+VALIDATE $? "Restarted Nginx"
