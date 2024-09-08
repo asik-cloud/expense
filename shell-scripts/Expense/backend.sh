@@ -51,7 +51,7 @@ id expense
     if [ $? -ne 0 ]
     then    
         echo "Adding User expense"
-        useradd &>>$LOG_FILE
+        useradd expense&>>$LOG_FILE
         VALIDATE $? "Adding user"
     else
         echo "User Already exists."
@@ -80,7 +80,7 @@ yum list installed mysql &>>$LOG_FILE
 if [ $? -ne 0 ]
 then 
     echo " Installing mysql client"
-    dnf install mysql -y- &>>$LOG_FILE
+    dnf install mysql -y &>>$LOG_FILE
     VALIDATE $? "Installing mysql client"
 else
     echo " Already installed ...skipping"
