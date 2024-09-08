@@ -4,7 +4,7 @@ LOG_FOLDER="/var/log/expense"
 SCRIT_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_FOLDER/$SCRIT_NAME-$TIMESTAMP.log"
-mkdir -p $LOG_FOLDER
+ sudo mkdir -p $LOG_FOLDER
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
