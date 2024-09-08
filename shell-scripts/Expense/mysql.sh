@@ -45,7 +45,7 @@ VALIDATE $? "Enabling mysql server"
 systemctl start mysqld &>>$LOG_FILE
 VALIDATE $? "Starting mysql server"
 
-mysql -h mysql.mohammedasik.shop -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
+mysql -h 172.31.29.81 -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
     echo "setting up password now"
