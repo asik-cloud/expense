@@ -15,9 +15,13 @@ variable "INS_TYPE" {
 
 variable "INS_NAMES" {
 
-    type = list(string)
-    default = [ "mysql", "backend", "frontend" ]
-  
+    type = map
+    default = { 
+        
+      mysql ="t3.small"
+      backend ="t2.micro"
+      frontend="t2.micro"
+}
 }
 
 variable "ZONE_ID" {
