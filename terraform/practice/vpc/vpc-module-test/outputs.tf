@@ -16,3 +16,6 @@ output "eip" {
 output "nat" {
     value = module.vpc.nat
 }
+# output "default_route_table_info" {
+#     value = module.vpc.default_route_table_info
+# }

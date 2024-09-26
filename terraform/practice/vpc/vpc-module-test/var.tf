@@ -44,3 +44,9 @@ variable "nat_gateway_tags" {
 variable "public_rt_tags" {
     default = {}
 }
+variable "peering_tags" {
+    default = {}  
+}
+variable "is_peering_required" {
+    default = true
+}

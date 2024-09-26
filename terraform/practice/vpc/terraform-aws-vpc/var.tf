@@ -61,3 +61,9 @@ variable "private_rt_tags" {
 variable "db_rt_tags" {
     default = {} 
 }
+variable "peering_tags" {
+    default = {}  
+}
+variable "is_peering_required" {
+  default = false
+}
