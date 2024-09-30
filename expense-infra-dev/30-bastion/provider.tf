@@ -1,15 +1,15 @@
 terraform {
-  backend "s3" {
-    bucket = "expense-devops-asik-s3"
-    key    = "LockID"
-    region = "us-east-1"
-  }
-
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+  }
+  backend "s3" {
+    bucket         = "expense-devops-asik-s3"
+    key            = "bastion-module"
+    region         = "us-east-1"
+    dynamodb_table = "tfstate-locking"
   }
 }
 
@@ -17,4 +17,3 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-
