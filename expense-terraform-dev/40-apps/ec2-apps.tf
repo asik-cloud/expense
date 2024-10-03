@@ -3,7 +3,7 @@ module "mysql" {
   ami    = local.ami_id
   name   = "${local.resource_name}-mysql"
 
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   vpc_security_group_ids = [local.mysql_sg_id]
   subnet_id              = local.database_subnet_id
@@ -22,7 +22,7 @@ module "frontend" {
   ami    = local.ami_id
   name   = "${local.resource_name}-frontend"
 
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   vpc_security_group_ids = [local.frontend_sg_id]
   subnet_id              = local.public_subnet_id
@@ -41,7 +41,7 @@ module "backend" {
   ami    = local.ami_id
   name   = "${local.resource_name}-backend"
 
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   vpc_security_group_ids = [local.backend_sg_id]
   subnet_id              = local.private_subnet_id
@@ -61,7 +61,7 @@ module "ansible" {
   name   = "${local.resource_name}-ansible"
   user_data = file("expense.sh")
 
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   vpc_security_group_ids = [local.ansible_sg_id]
   subnet_id              = local.public_subnet_id

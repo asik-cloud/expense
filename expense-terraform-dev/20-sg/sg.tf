@@ -42,6 +42,17 @@ vpc_id = local.vpc_id
 sg_tags = var.ansible_sg_tags
 }
 
+module "bastion_sg" {
+
+source = "../../terraform/practice/modules/expense-modules/terraform-aws_security_group"
+Project = var.Project
+Environemt = var.Environment
+sg_name = "bastion"
+common_tags = var.common_tags
+vpc_id = local.vpc_id
+sg_tags = var.bastion_sg_tags
+}
+
 resource "aws_security_group_rule" "mysql_backend" {
   type              = "ingress"
   from_port         = 3306
@@ -60,7 +71,7 @@ resource "aws_security_group_rule" "backend_frontend" {
   security_group_id = module.backend_sg.id
 }
 
-resource "aws_security_group_rule" "frontend_public" {
+resource "aws_security_group_rule" "frontend_public_http" {
   type              = "ingress"
   from_port         = 80
   to_port           = 80
@@ -68,17 +79,16 @@ resource "aws_security_group_rule" "frontend_public" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = module.frontend_sg.id
 }
-
-module "bastion_sg" {
-
-source = "../../terraform/practice/modules/expense-modules/terraform-aws_security_group"
-Project = var.Project
-Environemt = var.Environment
-sg_name = "bastion"
-common_tags = var.common_tags
-vpc_id = local.vpc_id
-sg_tags = var.bastion_sg_tags
+resource "aws_security_group_rule" "frontend_public_ssh" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.frontend_sg.id
 }
+
+
 
 resource "aws_security_group_rule" "mysql_bastion" {
   type              = "ingress"
@@ -112,7 +122,7 @@ resource "aws_security_group_rule" "mysql_ansible" {
   to_port           = 22
   protocol          = "tcp"
   source_security_group_id       = module.ansible_sg.id
-  security_group_id = module.ansible_sg.id
+  security_group_id = module.mysql_sg.id
 }
 resource "aws_security_group_rule" "backend_ansible" {
   type              = "ingress"
@@ -134,6 +144,14 @@ resource "aws_security_group_rule" "ansible_public" {
   type              = "ingress"
   from_port         = 22
   to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = module.ansible_sg.id
+}
+resource "aws_security_group_rule" "ansible_web" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
   protocol          = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = module.ansible_sg.id

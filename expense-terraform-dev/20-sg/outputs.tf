@@ -10,3 +10,6 @@ output "mysql_sg_id" {
 output "bastion_sg_id" {
     value = module.bastion_sg.id
 }
+output "ansible_sg_id" {
+    value = module.ansible_sg.id
+}

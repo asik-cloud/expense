@@ -22,4 +22,5 @@ resource "aws_ssm_parameter" "ansible_sg_id" {
     name = "/${var.Project}/${var.Environment}/ansible_sg_id"
     type = "String"
     value = module.ansible_sg.id
+
 }
