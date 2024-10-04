@@ -16,6 +16,9 @@ output "eip" {
 output "nat" {
     value = aws_nat_gateway.natgw.id
 }
+output "db_subnet_group_name" {
+    value = aws_db_subnet_group.default.name
+}
 # output "default_route_table_info" {
 #     value = data.aws_vpc.default.cidr_block
 # }

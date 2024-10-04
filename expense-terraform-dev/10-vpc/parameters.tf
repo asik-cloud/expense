@@ -18,3 +18,8 @@ resource "aws_ssm_parameter" "database_subnet_ids" {
     type = "StringList"
     value = join(",", module.vpc.db_subnet)
 }
+resource "aws_ssm_parameter" "db_subnet_group_name" {
+    name = "/${var.Project}/${var.Environment}/db_subnet_group_name"
+    type = "String"
+    value = module.vpc.db_subnet_group_name
+}
