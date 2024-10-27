@@ -1,6 +1,6 @@
 module "vpc" {
 
- source = "../../terraform/practice/modules/expense-modules/terraform-aws-vpc"
+ source = "../../expense-modules/terraform-aws-vpc"
  cidr_blocks = "10.0.0.0/16"
  common_tags = var.common_tags
  Project = var.Project

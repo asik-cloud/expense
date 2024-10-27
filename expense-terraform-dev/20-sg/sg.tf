@@ -1,6 +1,6 @@
 module "mysql_sg" {
 
-source = "../../terraform/practice/modules/expense-modules/terraform-aws_security_group"
+source = "../../expense-modules/terraform-aws_security_group"
 Project = var.Project
 Environemt = var.Environment
 sg_name = "mysql"
@@ -11,7 +11,7 @@ sg_tags = var.mysql_sg_tags
 
 module "backend_sg" {
 
-source = "../../terraform/practice/modules/expense-modules/terraform-aws_security_group"
+source = "../../expense-modules/terraform-aws_security_group"
 Project = var.Project
 Environemt = var.Environment
 sg_name = "backend"
@@ -22,7 +22,7 @@ sg_tags = var.backend_sg_tags
 
 module "frontend_sg" {
 
-source = "../../terraform/practice/modules/expense-modules/terraform-aws_security_group"
+source = "../../expense-modules/terraform-aws_security_group"
 Project = var.Project
 Environemt = var.Environment
 sg_name = "frontend"
@@ -33,7 +33,7 @@ sg_tags = var.frontend_sg_tags
 
 module "ansible_sg" {
 
-source = "../../terraform/practice/modules/expense-modules/terraform-aws_security_group"
+source = "../../expense-modules/terraform-aws_security_group"
 Project = var.Project
 Environemt = var.Environment
 sg_name = "ansible"
@@ -44,7 +44,7 @@ sg_tags = var.ansible_sg_tags
 
 module "bastion_sg" {
 
-source = "../../terraform/practice/modules/expense-modules/terraform-aws_security_group"
+source = "../../expense-modules/terraform-aws_security_group"
 Project = var.Project
 Environemt = var.Environment
 sg_name = "bastion"

@@ -4,3 +4,6 @@ data "aws_ssm_parameter" "mysql_sg_id" {
 data "aws_ssm_parameter" "public_subnet_ids" {
   name = "/${var.Project}/${var.Environment}/public_subnet_ids"
 }
+data "aws_ssm_parameter" "db_subnet_group_name" {
+  name = "/${var.Project}/${var.Environment}/db_subnet_group_name"
+}
