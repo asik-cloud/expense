@@ -1,5 +1,6 @@
 FROM almalinux:9
 RUN dnf install nginx -y
+RUN rm -rf /tmp
 RUN mkdir /tmp
 # CMD ["nginx", "-g", "daemon off;"]
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
