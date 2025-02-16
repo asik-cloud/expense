@@ -7,4 +7,4 @@ ENTRYPOINT ["nginx", "-g", "daemon off;"]
 LABEL user="Aashik" project="Devops"
 ENV Course="Devops" \
     Duration="120hrs"
-ADD https://github.com/asik-cloud/expense/archive/refs/heads/main.zip /tmp/
+ADD https://github.com/asik-cloud/expense.git /tmp/
