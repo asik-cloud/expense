@@ -4,8 +4,9 @@ metadata:
   name: mutli-containers
 
 spec:
-  - containers:
-        name: nginx
+  containers:
+      - name: nginx
         image: nginx
-        name: almalinux
-        image: almalinux
+      - name: almalinux
+        image: almalinux:9
+        command: ["sleep","1000"]
