@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ClusterConfig
+
+metadata: 
+ name: Cluster
+ region: us-east-1
+
+nodeGroups:
+ - name: ng1
+   instanceType: t3.micro
+   desiredCapacity: 3
