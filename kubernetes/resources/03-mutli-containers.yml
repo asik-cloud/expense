@@ -1,0 +1,11 @@
+apiVersion:
+kind: Pod 
+metadata:
+  name: mutli-containers
+
+spec:
+  - containers:
+       - name: nginx
+         image: nginx
+       - name: almalinux
+          image: almalinux
