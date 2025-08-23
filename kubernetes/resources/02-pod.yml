@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
     - name: nginx
-      iamge: nginx
+      image: nginx
     - name: almalinux
       image: almalinux:9
       command: ["sleep", "1000"]
