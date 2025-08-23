@@ -2,7 +2,7 @@ apiVersion: V1
 kind: Pod
 
 metadata:
- name: mutli-pod
+ name: mutli-containers
 
 spec: 
     containers: 
