@@ -5,6 +5,7 @@ metadata:
   name: Cluster-1
 
 managedNodeGroups:
-  instanceType: t3.micro
-  desiredCapacity: 3
-  spot: true
+  - name: Cluster-ng
+    instanceType: t3.micro
+    desiredCapacity: 3
+    spot: true
