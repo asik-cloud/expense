@@ -3,9 +3,6 @@ kind: ClusterConfig
 
 metadata:
   name: first-cluster
-  labels:
-    prj: expense
-    env: dev
   region: us-east-1
 
 managedNodeGroups:
