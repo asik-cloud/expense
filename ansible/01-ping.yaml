@@ -1,0 +1,6 @@
+- name: play1
+  hosts: web
+  tasks:
+  - name: ping the server
+    ansible.builtin.debug:
+      msg: hello world
