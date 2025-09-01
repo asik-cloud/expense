@@ -1,0 +1,7 @@
+- name: Play 1
+  hosts: web
+  tasks:
+   - name: Installing a package
+     ansible.builtin.package:
+      name: nginx
+      state: present
