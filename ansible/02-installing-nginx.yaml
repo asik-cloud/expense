@@ -1,5 +1,6 @@
 - name: Play 1
   hosts: web
+  become: yes
   tasks:
    - name: Installing a package
      ansible.builtin.package:
