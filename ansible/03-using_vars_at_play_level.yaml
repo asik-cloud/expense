@@ -4,6 +4,6 @@
     COURSE: "DevOps with AWS"
     DURATION: "120 hrs"
   tasks: 
-  - name: using variables
-    ansible.builtin.debug:
-      msg: I am learning "{{COURSE}}" with "{{DURATION}}"
+    - name: using variables
+      ansible.builtin.debug:
+        msg: I am learning "{{COURSE}}" with "{{DURATION}}"
