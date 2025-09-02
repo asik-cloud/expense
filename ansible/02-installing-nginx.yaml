@@ -1,13 +1,13 @@
-- name: Play 1
+- name: play1
   hosts: web
   become: yes
   tasks:
-   - name: Installing a package
-     ansible.builtin.package:
+  - name: Installing nginx
+    ansible.builtin.package:
       name: nginx
       state: present
-   - name: running the nginx
-     ansible.builtin.service:
+  - name: running nginx
+    ansible.builtin.service:
       name: nginx
-      enabled: yes
       state: restarted
+      enabled: yes
