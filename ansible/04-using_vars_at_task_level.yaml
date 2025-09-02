@@ -1,9 +1,11 @@
 - name: play1
   hosts: web
+  vars:
+    DURATION: "120 hrs"
   tasks:
   - name: task level variables
     vars:
-       COURSE: "AWS"
+      COURSE: "AWS"
     ansbile.builtin.debug:
       msg: "I am learning {{COURSE}}"
       
