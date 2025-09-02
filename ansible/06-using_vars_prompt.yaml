@@ -1,0 +1,11 @@
+- name: using vars_prompt
+  hosts: web
+  vars_prompt:
+  - name: COURSE
+    prompt: "Enter course"
+  - name: DURATION
+    prompt: "Enter Duration"
+  tasks:
+  - name: using prompt
+    ansible.builtin.debug:
+      msg: "I am learning {{COURSE}} of {{DURATION}}"
