@@ -3,7 +3,7 @@
   tasks:
   - name: task level variables
     vars:
-      COURSE: "AWS"
+       COURSE: "AWS"
     ansbile.builtin.debug:
       msg: "I am learning {{COURSE}}"
       
