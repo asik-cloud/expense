@@ -1,11 +1,15 @@
-- name: play1
+- name: variables
   hosts: web
   vars:
+    COURSE: "AWS"
     DURATION: "120 hrs"
   tasks:
-  - name: task level variables
+  - name: task level
     vars:
-      COURSE: "AWS"
-    ansbile.builtin.debug:
-      msg: "I am learning {{COURSE}}"
-      
+      COURSE: "Ansible"
+    ansible.builtin.debug:
+      msg: "I am learning {{COURSE}} with {{DURATION}}"
+
+  - name: play level
+    ansible.builtin.debug:
+      msg: "I am learning {{COURSE}} with {{DURATION}}"
