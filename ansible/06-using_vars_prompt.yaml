@@ -2,10 +2,12 @@
   hosts: web
   vars_prompt:
   - name: COURSE
-    prompt: "Enter course"
-  - name: DURATION
-    prompt: "Enter Duration"
+    prompt: Enter COURSE
+    private: false
+  - name : DURATION
+    prompt: Enter DURATION
+    private: false
   tasks:
-  - name: using prompt
+  - name: using vars_prompt
     ansible.builtin.debug:
       msg: "I am learning {{COURSE}} of {{DURATION}}"
