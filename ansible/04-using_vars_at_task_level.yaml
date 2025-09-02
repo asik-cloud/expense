@@ -3,9 +3,9 @@
   vars:
     DURATION: "120 hrs"
   tasks:
-  - name: task level variables
-    vars:
-      COURSE: "AWS"
-    ansbile.builtin.debug:
-      msg: "I am learning {{COURSE}}"
+    - name: task level variables
+      vars:
+        COURSE: "AWS"
+      ansbile.builtin.debug:
+        msg: "I am learning {{COURSE}}"
       
