@@ -1,0 +1,6 @@
+- name: from cmd line
+  hosts: web
+  tasks:
+  - name: getting variables from cmd line
+    ansible.builtin.debug:
+      msg: "I am learning {{COURSE}}, trainer is {{NAME}}, place is {{PLACE}}"
