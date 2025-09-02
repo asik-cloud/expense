@@ -1,9 +1,9 @@
 - name: play1
   hosts: web
   tasks:
-    - name: task level variables
-      vars:
-        COURSE: "AWS"
-      ansbile.builtin.debug:
-        msg: "I am learning {{COURSE}}"
+  - name: task level variables
+    vars:
+      COURSE: "AWS"
+    ansbile.builtin.debug:
+      msg: "I am learning {{COURSE}}"
       
