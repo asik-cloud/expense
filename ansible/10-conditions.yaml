@@ -1,12 +1,12 @@
-- name: conditions
+- name: Conditions
   hosts: local
   connection: local
   become: yes
   tasks:
-  - name: check if user exists or not
+  - name: Check if the user expense exists or not
     ansible.builtin.command: id expense
-    register: user  # registering return code of cmd 'id expense' into the var "user"
-    ignore_errors: yes 
-  - name: Create user 
+    register: user
+    ignore_errors: yes
+  - name: create user
     ansible.builtin.command: useradd expense
     when: user.rc != 0
