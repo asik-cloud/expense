@@ -12,4 +12,4 @@
   - name: check the number is greater than 10
     ansible.builtin.debug:
       msg: "Entered number is {{my_number}}"
-    when: my_number > 10
+    when: my_number | int > 10
