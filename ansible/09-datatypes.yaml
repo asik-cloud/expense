@@ -1,18 +1,21 @@
-- name: Datatypes
+- name: Datatypes'
   hosts: local
   connection: local
   vars:
-    course: "AWS"
+    course: DevOps
     duration: 120
     topics:
-    - Ansibile 
-    - terraform
-    - Docker
+      - Linux
+      - shell
+      - ansible  
+      - Terraform
+      - K8s
+      - Docker
     tools:
-      CI: Jenckins
-      CD: Spinnacker
-      db: mysql
+       ci: Jenkins
+       CD: Spinnaker
+       Cloud: AWS 
   tasks:
-  - name: printing the variables
+  - name: Printing the Datatypes
     ansible.builtin.debug:
-      msg: " I am learnig {{course}} with duration {{duration}} including tools {{tools}} and topics are {{topics}}"
+      msg: "I am learning {{course}} of duration {{duration}}. Topics covered are {{topics}} and tools used are {{tools}}"
