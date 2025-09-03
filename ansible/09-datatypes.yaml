@@ -1,0 +1,18 @@
+- name: Datatypes
+  hosts: local
+  connection: local
+  vars:
+    course: "AWS"
+    duration: 120
+    topics:
+    - Ansibile 
+    - terraform
+    - Docker
+    tools:
+      CI: Jenckins
+      CD: Spinnacker
+      db: mysql
+  tasks:
+  - name: printing the variables
+    ansible.builtin.debug:
+      msg: " I am learnig {{course}} with duration {{duration}} including tools {{tools}} and topics are {{topics}}"
