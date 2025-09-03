@@ -1,0 +1,15 @@
+# playbook to accept a number from user and print it if the number is greater than 10
+
+- name: Conditions
+  hosts: local
+  connection: local
+  vars_prompt:
+    - name: my_number
+      prompt: Enter the number
+      private: false
+
+  tasks:
+  - name: check the number is greater than 10
+    ansible.builtin.debug:
+      msg: "Entered number is {{my_number}}"
+    when: my_number > 10
