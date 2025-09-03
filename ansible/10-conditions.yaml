@@ -1,6 +1,7 @@
 - name: conditions
   hosts: local
   connection: local
+  become: yes
   tasks:
   - name: check if user exists or not
     ansible.builtin.command: id expense
