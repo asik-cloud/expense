@@ -6,7 +6,7 @@
   - name: Install/Uninstall the packages
     ansible.builtin.package:
       name: "{{item}}"
-      state: present
+      state: "{{item.state}}"
     loop:
     - { name: 'nginx', state: 'absent' }
     - { name: 'mysql', state: 'absent' }
