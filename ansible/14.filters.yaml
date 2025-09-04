@@ -1,0 +1,9 @@
+- name: filters
+  host: local
+  connection: local
+  tasks:
+  - name: upper case 
+    vars:
+      greeting: "Hello Yasmine"
+    ansible.builtil.debug:
+      msg: {{ greeting | upper }}
