@@ -8,7 +8,7 @@
       name: "{{item}}"
       state: present
     loop:
-    - {name: 'nginx', state: 'absent'}
-    - {name: 'mysql', state: 'absent'}
-    - {name: 'postfix', state: 'absent'}
-    - {name: 'git', state: 'absent'}
+    - { name: 'nginx', state: 'absent' }
+    - { name: 'mysql', state: 'absent' }
+    - { name: 'postfix', state: 'absent' }
+    - { name: 'git', state: 'absent' }
