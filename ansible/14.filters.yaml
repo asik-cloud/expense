@@ -17,7 +17,7 @@
         DURATION: " 120 hrs"
         TRAINER: "SKR"
     ansible.builtin.debug:
-      msg: "{{ details | items2dict }}"
+      msg: "{{ details | dict2items }}"
   - name: list to map 
     vars:
       details:
@@ -25,4 +25,4 @@
       -  {"key": "DURATION","value": " 120 hrs"}
       -  {"key": "TRAINER","value": "SKR"}
     ansible.builtin.debug:
-      msg: "{{ details | dict2items }}"
+      msg: "{{ details | items2dict }}"
