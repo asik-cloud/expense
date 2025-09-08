@@ -27,4 +27,4 @@
         - {"key": "time","value": 120}
         - {"key": "place","value": "zoom"}
       ansible.builtin.debug:
-        msg: {{ course | items2dict }}
+        msg: "{{ course | items2dict }}"
