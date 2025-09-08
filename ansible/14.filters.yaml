@@ -7,3 +7,17 @@
         greeting: "Hello World"
       ansible.builtin.debug:
         msg: "{{ greeting | upper }}"
+    - name: lower case
+      vars: 
+        greeting: "HELLO WORLD" 
+      ansible.builtin.debug:
+        msg: "{{ greeting | lower }}"
+    - name: map to list
+      vars: 
+        course:
+          name: Devops
+          time: 120
+          place: zoom
+      ansible.builtin.debug:
+        msg: "{{ course | dict2items }}"
+      
