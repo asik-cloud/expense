@@ -24,3 +24,5 @@
       -  {"key": "COURSE","value": "Devops with AWS"}
       -  {"key": "DURATION","value": " 120 hrs"}
       -  {"key": "TRAINER","value": "SKR"}
+    ansible.builtin.debug:
+      msg: "{{ details | dict2items }}"
