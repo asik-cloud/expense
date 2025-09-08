@@ -1,0 +1,22 @@
+- name: expense
+  hosts: local
+  connection: local
+  vars:
+    subnet_id: subnet-0c0eb462a5bd2e4bc
+    ami: ami-09c813fb71547fc4f
+    sg_id: sg-01e389050814235b8
+    instances:
+      - mysql
+      - frontend
+      - backend
+
+  tasks:  
+  - name: ec2 instances
+    amazon.aws.ec2_instance:
+      name: "{{ item }}"
+      vpc_subnet_id: "{{ subnet_id }}"
+      instance_type: " t3.micro "
+      security_group: "{{ sg_id }}"
+      image_id: "{{ ami }}"
+    loop: "{{ instances }}"
+    register: ec2_instances
