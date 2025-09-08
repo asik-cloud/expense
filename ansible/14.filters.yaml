@@ -20,4 +20,11 @@
           place: zoom
       ansible.builtin.debug:
         msg: "{{ course | dict2items }}"
-      
+    - name: list to map
+      vars:
+       course:
+        - {"key": "name","value": "Devops"}
+        - {"key": "time","value": 120}
+        - {"key": "place","value": "zoom"}
+      ansible.builtin.debug:
+        msg: {{ course | items2dict }}
