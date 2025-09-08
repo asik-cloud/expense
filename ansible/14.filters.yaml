@@ -18,3 +18,9 @@
         TRAINER: "SKR"
     ansible.builtin.debug:
       msg: "{{ details | dict2items }}"
+  - name: list to map 
+    vars:
+      details:
+      -  {"key": "COURSE","value": "Devops with AWS"}
+      -  {"key": "DURATION","value": " 120 hrs"}
+      -  {"key": "TRAINER","value": "SKR"}
