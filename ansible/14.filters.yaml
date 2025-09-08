@@ -1,7 +1,7 @@
 - name: filters/functions
   hosts: local
-  vars:
-    - vars_files.yaml
+  vars_files:
+   - vars_files.yaml
   tasks:
   - name: uppercase
     ansible.builtin.debug:
