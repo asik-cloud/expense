@@ -1,5 +1,6 @@
 - name: filters/functions
   hosts: local
+  connection: local
   vars_files:
    - vars_files.yaml
   tasks:
