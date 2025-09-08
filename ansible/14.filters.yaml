@@ -9,7 +9,7 @@
       msg: "{{ COURSE | upper }}"
   - name: lower
     ansible.builtin.debug:
-      msg: "{{ DURATION | Lower }}"
+      msg: "{{ DURATION | lower }}"
   - name: map to list
     vars:
       details:
