@@ -1,36 +1,19 @@
-- name: filters
+- name: filters/functions
   hosts: local
-  connection: local
+  vars:
+    - vars_files.yaml
   tasks:
-    - name: upper case
-      vars:
-        greeting: "Hello World"
-      ansible.builtin.debug:
-        msg: "{{ greeting | upper }}"
-    - name: lower case
-      vars: 
-        greeting: "HELLO WORLD" 
-      ansible.builtin.debug:
-        msg: "{{ greeting | lower }}"
-    - name: map to list
-      vars: 
-        course:
-          name: Devops
-          time: 120
-          place: zoom
-      ansible.builtin.debug:
-        msg: "{{ course | dict2items }}"
-    - name: list to map
-      vars:
-       course:
-        - {"key": "name","value": "Devops"}
-        - {"key": "time","value": 120}
-        - {"key": "place","value": "zoom"}
-      ansible.builtin.debug:
-        msg: "{{ course | items2dict }}"
-
-    - name: validate ipv4 address
-      vars:
-        ip: 172.31.31.121
-      ansible.builtin.debug:
-        msg: "{{ ip | ansible.utils.ipv4 }}"
+  - name: uppercase
+    ansible.builtin.debug:
+      msg: "{{ COURSE | upper }}"
+  - name: lower
+    ansible.builtin.debug:
+      msg: "{{ DURATION | Lower }}"
+  - name: map to list
+    vars:
+      details:
+        COURSE: "Devops with AWS"
+        DURATION: " 120 hrs"
+        TRAINER: "SKR"
+    ansible.builtin.debug:
+      msg: "{{ details | dict2items }}"
