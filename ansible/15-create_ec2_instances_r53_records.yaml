@@ -9,6 +9,7 @@
       - mysql
       - frontend
       - backend
+    zone: learncloudwithamk.shop
 
   tasks:
   - name: creating servers/ec2_instances
@@ -19,3 +20,16 @@
       security_group: "{{ sg_id }}"
       image_id: "{{ ami }}"
     loop: "{{ instances }}"
+    register: ec2_instances_info
+
+  - name: creating route53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ zone }}"
+      record: "{{ item.item }}.{{ zone }}"
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+      wait: true
+      overwrite: true
+    loop: "{{ ec2_instances_info }}"
