@@ -28,3 +28,9 @@
         - {"key": "place","value": "zoom"}
       ansible.builtin.debug:
         msg: "{{ course | items2dict }}"
+
+    - name: validate ipv4 address
+      vars:
+        ip: 172.31.31.121
+      ansible.builtin.debug:
+        msg: "{{ ip | ansible.utils.ipv4 }}"
