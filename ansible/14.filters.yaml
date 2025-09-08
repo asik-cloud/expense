@@ -17,7 +17,7 @@
         DURATION: " 120 hrs"
         TRAINER: "SKR"
     ansible.builtin.debug:
-      msg: "{{ details | dict2items }}"
+      msg: "{{ details | items2dict }}"
   - name: list to map 
     vars:
       details:
