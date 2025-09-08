@@ -3,16 +3,15 @@
   connection: local
   vars:
     subnet_id: subnet-0c0eb462a5bd2e4bc
-    ami: ami-09c813fb71547fc4f
     sg_id: sg-01e389050814235b8
+    ami: ami-09c813fb71547fc4f
     instances:
       - mysql
       - frontend
       - backend
-    zone: learncloudwithamk.shop
 
-  tasks:  
-  - name: ec2 instances
+  tasks:
+  - name: creating servers/ec2_instances
     amazon.aws.ec2_instance:
       name: "{{ item }}"
       vpc_subnet_id: "{{ subnet_id }}"
@@ -20,16 +19,3 @@
       security_group: "{{ sg_id }}"
       image_id: "{{ ami }}"
     loop: "{{ instances }}"
-    register: ec2_instances
-
-  - name: create r53 records
-    amazon.aws.route53:
-      state: present
-      zone: "{{ zone }}"
-      record: "{{ item.item }}.{{ zone }}"
-      type: A
-      ttl: 1
-      value: "{{ item.instances[0].private_ip_address }}"
-      wait: true
-      overwrite: true
-    loop: "{{ ec2_instances.results }}"
