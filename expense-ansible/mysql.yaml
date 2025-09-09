@@ -1,33 +1,17 @@
-- name: mysql confifuration
+- name: mysql configuration
   hosts: mysql
   become: yes
   vars: 
     host: "mysql.learncloudwithamk.shop"
+    mysql_user: "root"
     mysql_pwd: "ExpenseApp@1"
   tasks: 
-  - name: install mysql server
+  - name: Installing mysql-server
     ansible.builtin.package:
       name: mysql-server
-      state: present 
-  - name: install Pymysql, cyrptography with pip 
-    ansible.builtin.pip:
-      name: 
-      - PyMySQL
-      - cryptography
-      executable: pip3.9
-  - name: starting and enabling mysql
+      state: present
+  - name: starting and enabling mysqld service
     ansible.builtin.service:
       name: mysqld
       state: restarted
       enabled: yes
-  - name: Connecting to mysql
-    community.mysql.mysql_info:
-      login_user: root
-      login_password: "{{ mysql_pwd }}"
-      login_host: "{{ host }}"
-    ignore_errors: true
-    register: mysql_info
-
-  - name: setting mysql root password 
-    ansible.builtin.command: mysql_secure_installation --set-root-pass "{{ mysql_pwd }}"
-    when: mysql_info.failed is true
