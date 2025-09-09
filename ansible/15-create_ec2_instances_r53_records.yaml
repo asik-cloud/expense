@@ -9,7 +9,7 @@
       - mysql
       - frontend
       - backend
-    zone: learnwithamk.shop
+    zone: learncloudwithamk.shop
   tasks:
   - name: Creating ec2 instances
     amazon.aws.ec2_instance:
