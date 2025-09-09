@@ -23,7 +23,7 @@
       login_user: root
       login_password: "{{ mysql_pwd }}"
       login_host: "{{ host }}"
-      ignore_errors: true
+    ignore_errors: true
     register: mysql_info
 
   - name: setting mysql root password 
