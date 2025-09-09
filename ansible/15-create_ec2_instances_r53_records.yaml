@@ -1,18 +1,17 @@
-- name: expense
+- name: expense servers
   hosts: local
   connection: local
   vars:
-    subnet_id: subnet-0c0eb462a5bd2e4bc
-    sg_id: sg-01e389050814235b8
     ami: ami-09c813fb71547fc4f
+    sg_id: sg-01e389050814235b8
+    subnet_id: subnet-0c0eb462a5bd2e4bc
     instances:
       - mysql
       - frontend
       - backend
-    zone: learncloudwithamk.shop
-
+    zone: learnwithamk.shop
   tasks:
-  - name: creating servers/ec2_instances
+  - name: Creating ec2 instances
     amazon.aws.ec2_instance:
       name: "{{ item }}"
       vpc_subnet_id: "{{ subnet_id }}"
@@ -20,29 +19,16 @@
       security_group: "{{ sg_id }}"
       image_id: "{{ ami }}"
     loop: "{{ instances }}"
-    register: ec2_instances_info
+    register: instances_info
 
-  - name: creating route53 records
+  - name: adding route53 records
     amazon.aws.route53:
       state: present
       zone: "{{ zone }}"
-      record: "{{ item.item }}.{{ zone }}"
+      record: "{{ item.instances_info[0] }}.{{ zone }}"
       type: A
       ttl: 1
-      value: "{{ item.instances[0].private_ip_address }}"
+      value: "{{ item.instances_info[0].private_ip_address }}"
       wait: true
       overwrite: true
-    loop: "{{ ec2_instances_info.results }}"
-  
-  - name: creating route53 records
-    amazon.aws.route53:
-      state: present
-      zone: "{{ zone }}"
-      record: "{{ zone }}"
-      type: A
-      ttl: 1
-      value: "{{ item.instances[0].public_ip_address }}"
-      wait: true
-      overwrite: true
-    loop: "{{ ec2_instances_info.results }}"
-    when: item.item == frontend
+    loop: "{{ instances_info }}"
