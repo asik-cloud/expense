@@ -9,13 +9,11 @@
     ansible.builtin.package:
       name: mysql-server
       state: present 
-  - name: install cyrptography
-    ansible.builtin.package:
-      name: cryptography
-      state: present
-  - name: install Pymysql with pip 
+  - name: install Pymysql, cyrptography with pip 
     ansible.builtin.pip:
-      name: PyMySQL
+      name: 
+      - PyMySQL
+      - cyrptography
       executable: pip3.9
   - name: starting and enabling mysql
     ansible.builtin.service:
