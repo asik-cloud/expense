@@ -1,6 +1,9 @@
 - name: mysql confifuration
   hosts: mysql
   become: yes
+  vars: 
+    host: "mysql.learncloudwithamk.shop"
+    mysql_pwd: "ExpenseApp@1"
   tasks: 
   - name: install mysql server
     ansible.builtin.package:
@@ -11,3 +14,9 @@
       name: mysqld
       state: restarted
       enabled: yes
+  - name: Connecting to mysql
+    community.mysql.mysql_info:
+      login_user: root
+      login_password: "{{ mysql_pwd }}"
+      login_host: "{{ host }}"
+    register: mysql_info
