@@ -31,4 +31,4 @@
       value: "{{ item.instances_info[0].private_ip_address }}"
       wait: true
       overwrite: true
-    loop: "{{ instances_info }}"
+    loop: "{{ instances_info.results }}"
