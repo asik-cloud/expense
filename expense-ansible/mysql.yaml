@@ -23,4 +23,9 @@
       login_user: root
       login_password: "{{ mysql_pwd }}"
       login_host: "{{ host }}"
+      ignore_erros: true
     register: mysql_info
+
+  - name: setting mysql root password 
+    ansible.builtin.command: mysql_secure_installation --set-root-pass "{{ mysql_pwd }}"
+    when: mysql_info.failed is true
