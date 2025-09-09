@@ -13,7 +13,7 @@
     ansible.builtin.pip:
       name: 
       - PyMySQL
-      - cyrptography
+      - cryptography
       executable: pip3.9
   - name: starting and enabling mysql
     ansible.builtin.service:
