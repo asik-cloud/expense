@@ -30,4 +30,4 @@
       ttl: 1
       value: "{{item.servers[0].private_ip_address}}"
       wait: true
-    loop: instances_info.results
+    loop: "{{ instances_info.results }}" 
