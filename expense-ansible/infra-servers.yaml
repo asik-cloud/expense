@@ -19,4 +19,8 @@
       security_group: "{{sg_id}}"
       image_id: "{{img_id}}"
     loop: "{{servers}}"
-    
+    register: instances_info
+
+  - name: printing instances_info
+    ansible.builtin.debug:
+      msg: "{{instances_info}}"
