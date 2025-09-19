@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   vars:
-    servers:
+    instances:
       - mysql
       - backend
       - frontend
@@ -18,7 +18,7 @@
       instance_type: t3.micro
       security_group: "{{sg_id}}"
       image_id: "{{img_id}}"
-    loop: "{{ servers }}"
+    loop: "{{ instances }}"
     register: instances_info
 
   - name: creating route53 records
@@ -28,6 +28,6 @@
       record: "{{item.item}}.{{zone}}"
       type: A
       ttl: 1
-      value: "{{ item.servers[0].private_ip_address }}"
+      value: "{{ item.instances[0].private_ip_address }}"
       wait: true
     loop: "{{ instances_info.results }}" 
