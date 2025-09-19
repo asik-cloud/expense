@@ -29,5 +29,6 @@
       type: A
       ttl: 1
       value: "{{ item.instances[0].private_ip_address }}"
+      overwrite: true
       wait: true
     loop: "{{ instances_info.results }}" 
